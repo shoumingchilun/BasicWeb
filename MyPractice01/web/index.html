@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>学生信息表</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script language="JavaScript" src="js/index.js"></script>
+</head>
+<body>
+<div id="div_container">
+    <div id = "div_student_list">
+        <p class="center f30">欢迎使用学生信息后台管理系统</p>
+        <div style="border:0px solid red;width:60%;margin-left:20%;text-align:right;">
+            <form th:action="@{/index}" method="post" style="float:left;width:60%;margin-left:20%;">
+                <input type="hidden" name="oper" value="search"/>
+                请输入学生姓名关键字：<input type="text" name="keyword" th:value="${session.keyword}"/>
+                <input type="submit" value="查询" class="btn"/>
+            </form>
+        </div>
+        <table id="tbl_student">
+            <tr>
+                <th style="width: 5%">学生号</th>
+                <th style="width: 5%">姓名</th>
+                <th style="width: 5%">性别</th>
+                <th style="width: 5%">学生类别</th>
+                <th style="width: 5%">专业名称</th>
+                <th style="width: 10%">班级</th>
+                <th style="width: 15%">身份证号(注:后4位不准确)</th>
+                <th style="width: 25%">联系地址</th>
+                <th class="w10">备注</th>
+                <th style="width: 5%">操作</th>
+            </tr>
+            <tr th:if="${#lists.isEmpty(session.studentList)}">
+                <td colspan="10">对不起，暂无学生信息！</td>
+            </tr>
+            <tr th:unless="${#lists.isEmpty(session.studentList)}" th:each="student : ${session.studentList}">
+                <!-- <td><a th:text="${fruit.fname}" th:href="@{'/edit.do?fid='+${fruit.fid}}">苹果</a></td> -->
+                <td th:text="${student.studentID}">studentID</td>
+                <td th:text="${student.name}">name</td>
+                <td th:text="${student.gender}">gender</td>
+                <td th:text="${student.studentSort}">studentSort</td>
+                <td th:text="${student.majorName}">majorName</td>
+                <td th:text="${student.studentClass}">studentClass</td>
+                <td th:text="${student.idCard}">idCard</td>
+                <td th:text="${student.contactAddress}">contactAddress</td>
+                <td th:text="${student.others}">others</td>
+                <!-- <td><a th:text="${fruit.fname}" th:href="@{'/edit.do?fid='+${fruit.fid}}">苹果</a></td> -->
+                <td><a  th:href="@{'/edit.do?id='+${student.ID}}"><img src="imgs/del.jpg" class="updImg"></a></td>
+            </tr>
+        </table>
+        <div style="width:60%;margin-left:20%;border:0px solid red;padding-top:4px;" class="center">
+            <input type="button" value="首页" class="btn" th:onclick="|page(1)|" th:disabled="${session.pageNo==1}"/>
+            <input type="button" value="上一页" class="btn" th:onclick="|page(${session.pageNo - 1})|" th:disabled="${session.pageNo==1}"/>
+            <input type="button" value="下一页" class="btn" th:onclick="|page(${session.pageNo+1})|" th:disabled="${session.pageNo==session.pageCount}">
+            <input type="button" value="尾页" class="btn" th:onclick="|page(${session.pageCount})|" th:disabled="${session.pageNo==session.pageCount}">
+            <p th:text="${'当前页：'+session.pageNo+' / '+session.pageCount}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

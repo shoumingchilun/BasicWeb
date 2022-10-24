@@ -1,0 +1,61 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/edit.css">
+    <title>编辑学生信息</title>
+</head>
+<body>
+<div id="div_container">
+    <div id="div_student_list">
+        <p class="center f30">编辑库存信息</p>
+        <form th:action="@{/update.do}" method="post" th:object="${student}">
+            <input type="hidden" name="ID" th:value="*{ID}">
+            <table id="tbl_student">
+                <tr>
+                    <th class="w20">studentID：</th>
+                    <td><input type="text" name="studentID" th:value="*{studentID}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">name：</th>
+                    <td><input type="text" name="name" th:value="*{name}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">gender：</th>
+                    <td><input type="text" name="gender" th:value="*{gender}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">studentSort：</th>
+                    <td><input type="text" name="studentSort" th:value="*{studentSort}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">majorName：</th>
+                    <td><input type="text" name="majorName" th:value="*{majorName}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">studentClass：</th>
+                    <td><input type="text" name="studentClass" th:value="*{studentClass}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">idCard：</th>
+                    <td><input type="text" name="idCard" th:value="*{idCard}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">contactAddress：</th>
+                    <td><input type="text" name="contactAddress" th:value="*{contactAddress}"/></td>
+                </tr>
+                <tr>
+                    <th class="w20">others：</th>
+                    <td><input type="text" name="others" th:value="*{others}"/></td>
+                </tr>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value="修改" />
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

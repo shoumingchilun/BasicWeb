@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="MyPractice01:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyPractice01_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="MyPractice01/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MyPractice01" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="JUnit4" module-name="MyPractice01" />
+          <element id="library" level="project" name="thymeleaf_lib" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.37-bin" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
